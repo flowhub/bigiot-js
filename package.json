@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run lint && npm run spec",
     "lint": "eslint lib/*.js index.js",
-    "spec": "mocha --reporter spec spec/*.js"
+    "spec": "nyc mocha --reporter spec spec/*.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,13 @@
     "eslint": "^4.7.2",
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
-    "mocha": "^3.5.3"
+    "mocha": "^3.5.3",
+    "nyc": "^11.2.1"
+  },
+  "nyc": {
+    "include": [
+      "lib/*.js",
+      "*.js"
+    ]
   }
 }
