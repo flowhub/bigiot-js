@@ -1,2 +1,10 @@
 language: node_js
 node_js: '6'
+deploy:
+  provider: npm
+  email: henri.bergius@iki.fi
+  api_key:
+    secure: R+1SITl4MYt4wOz5aTptntv15DDEJOOD92qJsjZc1yMaZa18lxY0OhAEtrzVDWgrf5FbbI1aGBgu/WvfScDC1xVQ1ozY5jcmBeiXPa/+6OBGHS3T2ADSx/IsdAP73mgeI20ALdS9D5Gq8mhiTkycd+19+52VOzNomjWpDgdUnvWWSPOdMR7FTbiQ4jDZLB4EYzhW7dppngyEaPfYXnRpVUY2NGKUdwwNl1PtvvbkK+4r0JUJqUo8nJmGrHo3z+ZpHS1JU9jkHrZqDVUrI9LyPz/i0J8nnbhWBgV/ayH39kJ4nO2iXHI0bub0odZGGpWGXfO0JYXp8GSiqXqytDpKXyNWbCP+q52dJnePH8ipRxW7wUtayahjpG3/dpzes0XDeBYKHekH10yCUsqDmz3WlXN5e0gQtl62JIuebJ2+EYR12hVHhRTUYYpXUe8Rxbkq4XUy5dqCxNzSR8szVivnsUkzwv5O4JHDYAvZ1c+lESg9r9VWJx4kdh7NMcUsBWG3TbegBO7QECrcxQUStmMZR+XageIVIEgVKOdjDEVrENqXCcZ5Bs77V3mTSgEE5H6ruH87ipN9FzfpF44nIzlCgS5yyR+sknJ7tOayDBnPxek2x+y1IBe6Xlyyd1XZPklo6XwiGUHQNY2IM/WPl21i3j+UWAkfTlhdxYLFYrJRgAA=
+  on:
+    tags: true
+    repo: flowhub/bigiot-js
