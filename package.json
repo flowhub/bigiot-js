@@ -1,0 +1,32 @@
+{
+  "name": "bigiot-js",
+  "version": "0.1.0",
+  "description": "JavaScript library for interacting with the BIG IoT marketplace",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && npm run spec",
+    "lint": "eslint lib/*.js index.js",
+    "spec": "mocha --reporter spec spec/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/flowhub/bigiot-js.git"
+  },
+  "author": "Henri Bergius <henri.bergius@iki.fi>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flowhub/bigiot-js/issues"
+  },
+  "homepage": "https://github.com/flowhub/bigiot-js#readme",
+  "dependencies": {
+    "apollo-client": "^1.9.3",
+    "graphql-tag": "^2.4.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^3.5.3"
+  }
+}
