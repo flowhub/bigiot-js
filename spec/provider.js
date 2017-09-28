@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 const { provider: BigIotProvider, offering: BigIotOffering } = require('../index');
+const gql = require('graphql-tag');
 
 describe('BIG IoT Provider', () => {
   const providerId = process.env.BIGIOT_PROVIDER_ID
@@ -55,9 +56,11 @@ describe('BIG IoT Provider', () => {
     });
   });
   describe('registering an offering with a secret', () => {
-    it('should succeed', () => {
-      let prov = new BigIotProvider(providerId, providerSecret);
-      let off = new BigIotOffering('test offering', 'bigiot:weather');
+    let prov = null;
+    let off = null;
+    before(() => {
+      prov = new BigIotProvider(providerId, providerSecret);
+      off = new BigIotOffering('test offering', 'bigiot:weather');
       off.endpoints = {
         uri: 'http://localhost/foo',
         endpointType: 'HTTP_GET',
@@ -72,12 +75,39 @@ describe('BIG IoT Provider', () => {
       off.extent = {
         city: 'Berlin'
       };
-      return prov.authenticate()
-        .then(() => {
-          return prov.register(off)
-        });
     });
-    it('should have made the offering discoverable');
+    it('should succeed to authenticate', () => {
+      return prov.authenticate();
+    });
+    it('should be able to register an offering', () => {
+      return prov.register(off)
+    });
+    it('should have made the offering discoverable', () => {
+      expect(off.id).to.be.a('string', 'Offering ID needs to be available');
+      const query = gql`
+        query offering($offeringId:String!) {
+          offering(id:$offeringId) {
+            id name
+            rdfType { uri name }
+            extent { city }
+          }
+        }
+      `;
+      return prov.client.query({
+        query: query,
+        variables: {
+          offeringId: off.id,
+        },
+      })
+      .then((result) => {
+        expect(result.data.offering).to.be.an('object');
+        const foundOffering = result.data.offering;
+        expect(foundOffering.id).to.equal(off.id);
+        expect(foundOffering.name).to.equal(off.name);
+        expect(foundOffering.rdfType.uri).to.equal(off.rdfUri);
+        expect(foundOffering.extent.city).to.equal(off.extent.city);
+      });
+    });
   });
 });
 
