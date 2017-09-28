@@ -11,7 +11,7 @@ describe('BIG IoT Provider', () => {
   describe('registering an offering without secrets', () => {
     it('should fail', (done) => {
       let prov = new BigIotProvider(providerId);
-      let off = new BigIotOffering('test', 'test offering', 'http://example.org/test');
+      let off = new BigIotOffering('test offering', 'http://example.org/test');
       off.endpoints = {
         uri: 'http://example.net/foo',
         endpointType: 'HTTP_GET',
@@ -36,9 +36,9 @@ describe('BIG IoT Provider', () => {
     });
   });
   describe('registering an offering with a secret', () => {
-    it('should succeed', (done) => {
+    it('should succeed', () => {
       let prov = new BigIotProvider(providerId, providerSecret);
-      let off = new BigIotOffering('SpreeTest', 'test offering', 'bigiot:weather');
+      let off = new BigIotOffering('test offering', 'bigiot:weather');
       off.endpoints = {
         uri: 'http://localhost/foo',
         endpointType: 'HTTP_GET',
@@ -53,20 +53,12 @@ describe('BIG IoT Provider', () => {
       off.extent = {
         city: 'Berlin'
       };
-      prov.authenticate()
+      return prov.authenticate()
         .then(() => {
           return prov.register(off)
-        })
-        .then((result) => {
-        })
-        .catch((e) => {
-          console.trace(e);
-          done(e);
         });
     });
-    it('should have made the offering discoverable', (done) => {
-      this.skip();
-    });
+    it('should have made the offering discoverable');
   });
 });
 
