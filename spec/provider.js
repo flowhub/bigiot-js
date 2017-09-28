@@ -63,8 +63,6 @@ describe('BIG IoT Provider', () => {
       off = new BigIotOffering('test offering', 'bigiot:weather');
       off.endpoints = {
         uri: 'http://localhost/foo',
-        endpointType: 'HTTP_GET',
-        accessInterfaceType: 'BIGIOT_LIB',
       };
       off.outputData = [
         {
