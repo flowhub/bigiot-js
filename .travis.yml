@@ -1,7 +1,7 @@
 language: node_js
 node_js: '8'
 after_success:
-- ./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls
+- "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
 deploy:
   provider: npm
   email: henri.bergius@iki.fi
@@ -10,3 +10,7 @@ deploy:
   on:
     tags: true
     repo: flowhub/bigiot-js
+env:
+  global:
+  - secure: JHPvn9Bl7al88Tser8hQeaDJbDQMqNeyA68s+euARg/UY1KQ0WovVRRTd7Z9JkIBtqLO7J2ViMzKgUmdgfJrRVrdyT2jsa5WZ26EtXbo81IXw+JoRjeL40K2tngzuoJWNj584AoZRxiczu3//RCN2IsLQ7L8A5dU8JzLJHyfJWYkl3TuOx6PPgq9lVaNt3WJPLUuqQ9oKSGkDYvTMb3vuMta+1Pirq7jAsirb/sjFzZMDhm7S08jRCa4H79Plj6Wm+ZtTECWiVf6GZrPsQ4aZrQ9U2YeDYdnS5Py3nJiP76g1Ji5yuRbV0TAPxIttsxdCPqjkXDARBLFxrCvPx5aumxszedC4Gs0fgFXouciQl1jOY08Yd/e2gsbcAl69J67971qPe05Z/5Gx1DApgPL3f2ZD8ZdgPG7cXIPaDu5BXtLu/BNfYMS6Vh3dtG3mJKxIZvHGJw9Ul6wQ7xw6sN458/5f46b451rcGo5Shd/etP8QC8XtfWGUHaFLNhyzpwZEZC8cUoQslbZQrjrbRTBXr7XpPRRiJyBq365K9T5zv0k1IjyVQV5ulD9dQp7RraK24IT+sNKzeDysE/Cv6g58nmRtR7QptihkmPmgyrPvGP3iebNSvT+0y1wiYpXLR0pCdoqzYaamBjJgVls8hTmZeYcp2W/EmA8GXbAGvw3cv4=
+  - secure: f6UDP5JZIYaBIZJSSVR+kpf1EQcdYKnBqcg1YGa/0p9dvVNAAyGpVgcfvlP2KEhcflDnojuBQq1SEz9xHdsOgAWuGL4fJZZrEhh4m0jQCkbkFkw0N7yOIcww7ygcUor1vWpO9KY74kRSgx8uTEAE8zw4tfxrdvKe5zvLM3AybFO1kR8+hnfHIsg3VCkixmrlXUOfdHpQKsxdOE1bpq/H7bbv0IwkCHPyEnVCXDxldyM6EHGD6JaOrtO1j05rGINbgSXWa6NBZHY/KJ+JsU6evDkG0dtHWteZftkqthndXadXGvwvNedf3Bz1ZLQlm8fes75RbyCQ0p93epv3D2NZ5PRgnxv7KOD4MYDwIhL63xJ9UZvAsZt/o+K0DKxkJtBZhYZcRtG/bgwTh61VuUB2iSSGjlEln0n3DHG9wiMonz13rl0tD0hjWqtz+ZZe8hQDVhywvU/eMNNO4bpWxqgihQPhsVF+YJ2bDx1n4ouyFOL0RoiIIgOeB7sVWbptzL5kAtY653iSV0+aSPP/M0C3rqXr9FQSFC5crLjqYBxTzzhVz4ps7W0b3KIEVg82sUfS8RKf5ENyOnUsPN6Ll3uxZIzUIotEe8/qBX5OsUtYbslymRBEmpEhaevm9wmtABFgwyK7d/xEh10pqXtCIvJJ45Ty1nTFjxZVGcQawRpV28E=
