@@ -6,11 +6,11 @@ This module aims to provide a JavaScript library for interacting with the [BIG I
 ## Features
 
 * Registering an offering in the marketplace
+* Validating the JWT token presented by an offering subscriber
 
 ## Planned features
 
 * Unregistering an offering from the marketplace
-* Validating the JWT token presented by an offering subscriber
 * Discovering offerings from the marketplace
 * Subscribing to an offering
 
@@ -89,6 +89,20 @@ provider.register(offering)
 ```
 
 The offering registration is timeboxed and will expire by default in ten minutes, so for persistent offerings you should keep re-registering the offering in a timer loop.
+
+### Validating subscriber JSON Web Tokens
+
+Subscribers that make requests to your offering will present a HTTP Bearer token signed with your provider secret. You can validate it with:
+
+```javascript
+provider.validateToken(token)
+  .catch((err) => {
+    // Give a 403 response because token is invalid or expired
+  })
+  .then(() => {
+    // Token is valid
+  });
+```
 
 ## Usage for consumers
 
