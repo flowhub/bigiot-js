@@ -1,6 +1,7 @@
 const { expect } = require('chai');
 const { provider: BigIotProvider, offering: BigIotOffering } = require('../index');
 const gql = require('graphql-tag');
+const jwt = require('jsonwebtoken');
 
 describe('BIG IoT Provider', () => {
   const providerId = process.env.BIGIOT_PROVIDER_ID
@@ -107,5 +108,90 @@ describe('BIG IoT Provider', () => {
       });
     });
   });
+  describe('validating consumer tokens', () => {
+    let prov = null;
+    before(() => {
+      prov = new BigIotProvider(providerId, providerSecret);
+    });
+    it('should fail with a provider that doesn\'t have a secret', () => {
+      const provAnon = new BigIotProvider(providerId);
+      const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJGbHlpbmdfUGlnX1VHLVRlc3RfY29uc3VtZXItV2VhdGhlclF1ZXJ5PT1GbHlpbmdfUGlnX1VHLVNwcmVlX1dlYXRoZXItYWlycG9ydHdlYXRoZXIiLCJleHAiOjE1MDkwMjgzNTcsImlhdCI6MTUwOTAyNDc1Nywic3Vic2NyaWJhYmxlSWQiOiJGbHlpbmdfUGlnX1VHLVNwcmVlX1dlYXRoZXItYWlycG9ydHdlYXRoZXIiLCJzdWJzY3JpYmVySWQiOiJGbHlpbmdfUGlnX1VHLVRlc3RfY29uc3VtZXItV2VhdGhlclF1ZXJ5In0.JDyKNvxwb9mtANIGkJbtm1qkvneILpWn1reMKysJHPo';
+      return provAnon.validateToken(token)
+        .then(() => {
+          throw new Error('Unexpected pass');
+        })
+        .catch((e) => {
+          expect(e.message).to.contain('secret is required');
+        });
+    });
+    it('should give an expiry error on an old token', () => {
+      const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJGbHlpbmdfUGlnX1VHLVRlc3RfY29uc3VtZXItV2VhdGhlclF1ZXJ5PT1GbHlpbmdfUGlnX1VHLVNwcmVlX1dlYXRoZXItYWlycG9ydHdlYXRoZXIiLCJleHAiOjE1MDkwMjgzNTcsImlhdCI6MTUwOTAyNDc1Nywic3Vic2NyaWJhYmxlSWQiOiJGbHlpbmdfUGlnX1VHLVNwcmVlX1dlYXRoZXItYWlycG9ydHdlYXRoZXIiLCJzdWJzY3JpYmVySWQiOiJGbHlpbmdfUGlnX1VHLVRlc3RfY29uc3VtZXItV2VhdGhlclF1ZXJ5In0.JDyKNvxwb9mtANIGkJbtm1qkvneILpWn1reMKysJHPo';
+      return prov.validateToken(token)
+        .then(() => {
+          throw new Error('Unexpected pass');
+        })
+        .catch((e) => {
+          expect(e.message).to.contain('expired');
+        });
+    });
+    it('should fail on unsigned token', () => {
+      const token = jwt.sign({
+        foo: 'bar'
+      }, prov.secret, {
+        algorithm: 'none',
+        expiresIn: '1h',
+      });
+      return prov.validateToken(token)
+        .then(() => {
+          throw new Error('Unexpected pass');
+        })
+        .catch((e) => {
+          expect(e.message).to.contain('signature is required');
+        });
+    });
+    it('should fail on wrong encryption algorithm', () => {
+      const token = jwt.sign({
+        foo: 'bar'
+      }, prov.secret, {
+        algorithm: 'HS384',
+        expiresIn: '1h',
+      });
+      return prov.validateToken(token)
+        .then(() => {
+          throw new Error('Unexpected pass');
+        })
+        .catch((e) => {
+          expect(e.message).to.contain('invalid algorithm');
+        });
+    });
+    it('should fail on wrong signature', () => {
+      const token = jwt.sign({
+        foo: 'bar',
+      }, 'Hello world', {
+        expiresIn: '1h',
+      });
+      return prov.validateToken(token)
+        .then(() => {
+          throw new Error('Unexpected pass');
+        })
+        .catch((e) => {
+          expect(e.message).to.contain('invalid signature');
+        });
+    });
+    it('should pass on correct signature and expiry', () => {
+      const token = jwt.sign({
+        foo: 'bar',
+      }, Buffer.from(prov.secret, 'base64'), {
+        expiresIn: '1h',
+      });
+      return prov.validateToken(token)
+        .then((result) => {
+          delete result.iat;
+          delete result.exp;
+          expect(result).to.eql({
+            foo: 'bar'
+          });
+        })
+    });
+  });
 });
-
