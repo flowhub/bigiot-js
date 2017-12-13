@@ -125,7 +125,11 @@ describe('BIG IoT Provider', () => {
         });
     });
     it('should give an expiry error on an old token', () => {
-      const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJGbHlpbmdfUGlnX1VHLVRlc3RfY29uc3VtZXItV2VhdGhlclF1ZXJ5PT1GbHlpbmdfUGlnX1VHLVNwcmVlX1dlYXRoZXItYWlycG9ydHdlYXRoZXIiLCJleHAiOjE1MDkwMjgzNTcsImlhdCI6MTUwOTAyNDc1Nywic3Vic2NyaWJhYmxlSWQiOiJGbHlpbmdfUGlnX1VHLVNwcmVlX1dlYXRoZXItYWlycG9ydHdlYXRoZXIiLCJzdWJzY3JpYmVySWQiOiJGbHlpbmdfUGlnX1VHLVRlc3RfY29uc3VtZXItV2VhdGhlclF1ZXJ5In0.JDyKNvxwb9mtANIGkJbtm1qkvneILpWn1reMKysJHPo';
+      const token = jwt.sign({
+        foo: 'bar',
+      }, Buffer.from(prov.secret, 'base64'), {
+        expiresIn: '-1h',
+      });
       return prov.validateToken(token)
         .then(() => {
           throw new Error('Unexpected pass');
