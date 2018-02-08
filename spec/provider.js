@@ -87,8 +87,8 @@ describe('BIG IoT Provider', () => {
         query offering($offeringId:String!) {
           offering(id:$offeringId) {
             id name
-            rdfType { uri name }
-            extent { city }
+            rdfAnnotation { uri label }
+            spatialExtent { city }
           }
         }
       `;
@@ -103,8 +103,8 @@ describe('BIG IoT Provider', () => {
         const foundOffering = result.data.offering;
         expect(foundOffering.id).to.equal(off.id);
         expect(foundOffering.name).to.equal(off.name);
-        expect(foundOffering.rdfType.uri).to.equal(off.rdfUri);
-        expect(foundOffering.extent.city).to.equal(off.extent.city);
+        expect(foundOffering.rdfAnnotation.uri).to.equal(off.rdfUri);
+        expect(foundOffering.spatialExtent.city).to.equal(off.extent.city);
       });
     });
   });
