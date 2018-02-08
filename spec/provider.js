@@ -61,7 +61,7 @@ describe('BIG IoT Provider', () => {
     let off = null;
     before(() => {
       prov = new BigIotProvider(providerId, providerSecret);
-      off = new BigIotOffering('test offering', 'bigiot:weather');
+      off = new BigIotOffering('test offering', 'urn:big-iot:EnvironmentalIndicatorCategory');
       off.endpoints = {
         uri: 'http://localhost/foo',
       };
