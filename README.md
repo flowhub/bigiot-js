@@ -16,7 +16,11 @@ This module aims to provide a JavaScript library for interacting with the [BIG I
 
 ## Installation
 
-Simply install this module with NPM.
+Simply install this module with NPM:
+
+```shell
+$ npm install bigiot-js --save
+```
 
 ## Usage for providers
 
