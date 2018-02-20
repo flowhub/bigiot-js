@@ -30,6 +30,10 @@ Prerequisites:
 * Register your company and a new provider
 * Copy the provider ID and secret from the marketplace UI
 
+See [a simple provider example](https://github.com/flowhub/bigiot-js/blob/master/example/provider.js), and the [NoFlo](https://noflojs.org) integration in the [bigiot-bridge repository](https://github.com/flowhub/bigiot-bridge).
+
+### Authenticating with the marketplace
+
 Once you've completed the above steps, you can use this library. Instantiate a provider with:
 
 ```javascript
