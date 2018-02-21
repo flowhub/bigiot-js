@@ -16,7 +16,11 @@ This module aims to provide a JavaScript library for interacting with the [BIG I
 
 ## Installation
 
-Simply install this module with NPM.
+Simply install this module with NPM:
+
+```shell
+$ npm install bigiot-js --save
+```
 
 ## Usage for providers
 
@@ -25,6 +29,10 @@ Prerequisites:
 * Log into the [BIG IoT Marketplace](https://market.big-iot.org) (or another compatible marketplace instance)
 * Register your company and a new provider
 * Copy the provider ID and secret from the marketplace UI
+
+See [a simple provider example](https://github.com/flowhub/bigiot-js/blob/master/example/provider.js), and the [NoFlo](https://noflojs.org) integration in the [bigiot-bridge repository](https://github.com/flowhub/bigiot-bridge).
+
+### Authenticating with the marketplace
 
 Once you've completed the above steps, you can use this library. Instantiate a provider with:
 
