@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { consumer: BigIotConsumer } = require('../index');
+const { consumer: BigIotConsumer, offering: BigIotOffering } = require('../index');
 
 describe('BIG IoT Consumer', () => {
   const consumerId = process.env.BIGIOT_CONSUMER_ID
@@ -37,6 +37,28 @@ describe('BIG IoT Consumer', () => {
           expect(result[0].longitude).to.be.a('number');
           expect(result[0].vacant).to.be.a('number');
           return true;
+        });
+    });
+  });
+  describe('discovering offerings', () => {
+    let consumer = null;
+    let offerings = null;
+    before(() => {
+      consumer = new BigIotConsumer(consumerId, consumerSecret);
+    });
+    it('should succeed to authenticate', () => {
+      return consumer.authenticate();
+    });
+    it('should be able to discover offerings', () => {
+      const query = new BigIotOffering('Parking sites', 'urn:big-iot:ParkingSiteCategory');
+      delete query.license;
+      delete query.extent;
+      delete query.price;
+      return consumer.discover(query)
+        .then((allOfferings) => {
+          expect(allOfferings).to.be.an('array');
+          expect(allOfferings.length).to.be.above(0);
+          offerings = allOfferings;
         });
     });
   });
