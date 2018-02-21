@@ -7,12 +7,12 @@ This module aims to provide a JavaScript library for interacting with the [BIG I
 
 * Registering an offering in the marketplace
 * Validating the JWT token presented by an offering subscriber
+* Subscribing to an offering
 
 ## Planned features
 
 * Unregistering an offering from the marketplace
 * Discovering offerings from the marketplace
-* Subscribing to an offering
 
 ## Installation
 
