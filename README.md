@@ -7,12 +7,12 @@ This module aims to provide a JavaScript library for interacting with the [BIG I
 
 * Registering an offering in the marketplace
 * Validating the JWT token presented by an offering subscriber
-* Subscribing to an offering
+* Discovering offerings from the marketplace
+* Subscribing to an offering and receiving data from the provider
 
 ## Planned features
 
 * Unregistering an offering from the marketplace
-* Discovering offerings from the marketplace
 
 ## Installation
 
@@ -120,7 +120,7 @@ Prerequisites:
 * Register your company and a new consumer
 * Copy the consumer ID and secret from the marketplace UI
 
-See [a simple consumer example](https://github.com/flowhub/bigiot-js/blob/master/example/consumer.js).
+See [a simple consumer example](https://github.com/flowhub/bigiot-js/blob/master/example/consumer.js) or [a dynamic offering discovery example](https://github.com/flowhub/bigiot-js/blob/master/example/consumer_discover.js).
 
 ### Authenticating with the marketplace
 
@@ -134,9 +134,29 @@ const consumer = new bigiot.provider(consumerId, consumerSecret);
 Then you need to authenticate your consumer with the marketplace:
 
 ```javascript
-provider.authenticate()
+consumer.authenticate()
   .then(() => {
     // Code to run after successful authentication
+  });
+```
+
+### Discovering available offerings
+
+You can look up offerings in the marketplace. But for more dynamic applications, it is also possible to discover them based on various criteria.
+
+For example, to discover all parking site offerings, you can do the following:
+
+```javascript
+const query = new bigiot.offering('Parking sites', 'urn:big-iot:ParkingSiteCategory');
+// If you don't care about specifics on price and location, you can remove those
+delete query.license;
+delete query.price;
+delete query.extent;
+
+// Then get list of matching offerings
+consumer.discover(query)
+  .then((matchingOfferings) => {
+    // Loop through the offerings can subscribe
   });
 ```
 
