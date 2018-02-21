@@ -120,6 +120,8 @@ Prerequisites:
 * Register your company and a new consumer
 * Copy the consumer ID and secret from the marketplace UI
 
+See [a simple consumer example](https://github.com/flowhub/bigiot-js/blob/master/example/consumer.js).
+
 ### Authenticating with the marketplace
 
 Once you've completed the above steps, you can use this library. Instantiate a consumer with:
