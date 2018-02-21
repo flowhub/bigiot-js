@@ -151,3 +151,9 @@ consumer.subscribe('Offering ID here')
 ```
 
 The input data above is a JSON structure fulfilling whatever input parameters the offering requires.
+
+**Note:** many Java BIG IoT providers utilize a self-signed invalid SSL certificate. This will be rejected by default. To allow requests to these providers, set:
+
+```javascript
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+```
