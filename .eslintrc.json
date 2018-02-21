@@ -2,5 +2,8 @@
   "extends": "airbnb-base",
   "globals": {
     "fetch": false
+  },
+  "rules": {
+    "class-methods-use-this": 1
   }
 }

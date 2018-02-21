@@ -7,12 +7,12 @@ This module aims to provide a JavaScript library for interacting with the [BIG I
 
 * Registering an offering in the marketplace
 * Validating the JWT token presented by an offering subscriber
+* Subscribing to an offering
 
 ## Planned features
 
 * Unregistering an offering from the marketplace
 * Discovering offerings from the marketplace
-* Subscribing to an offering
 
 ## Installation
 
@@ -114,4 +114,40 @@ provider.validateToken(token)
 
 ## Usage for consumers
 
-TODO
+Prerequisites:
+
+* Log into the [BIG IoT Marketplace](https://market.big-iot.org) (or another compatible marketplace instance)
+* Register your company and a new consumer
+* Copy the consumer ID and secret from the marketplace UI
+
+### Authenticating with the marketplace
+
+Once you've completed the above steps, you can use this library. Instantiate a consumer with:
+
+```javascript
+const bigiot = require('bigiot-js');
+const consumer = new bigiot.provider(consumerId, consumerSecret);
+```
+
+Then you need to authenticate your consumer with the marketplace:
+
+```javascript
+provider.authenticate()
+  .then(() => {
+    // Code to run after successful authentication
+  });
+```
+
+### Subscribing to a known offering
+
+When you've found a data offering [from the marketplace](https://market.big-iot.org/allOfferings?onlyActive), you need to make a subscription in order to access it.
+
+```javascript
+consumer.subscribe('Offering ID here')
+  .then((subscription) => {
+    // Now you're subscribed. You can use the subscription details to make calls to the offering
+    consumer.access(subscription, inputData);
+  });
+```
+
+The input data above is a JSON structure fulfilling whatever input parameters the offering requires.
