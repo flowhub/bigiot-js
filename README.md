@@ -128,7 +128,7 @@ Once you've completed the above steps, you can use this library. Instantiate a c
 
 ```javascript
 const bigiot = require('bigiot-js');
-const consumer = new bigiot.provider(consumerId, consumerSecret);
+const consumer = new bigiot.consumer(consumerId, consumerSecret);
 ```
 
 Then you need to authenticate your consumer with the marketplace:
