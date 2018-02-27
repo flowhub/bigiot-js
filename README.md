@@ -1,14 +1,14 @@
 BIG IoT JavaScript library [![Build Status](https://travis-ci.org/flowhub/bigiot-js.svg?branch=master)](https://travis-ci.org/flowhub/bigiot-js) [![Coverage Status](https://coveralls.io/repos/github/flowhub/bigiot-js/badge.svg)](https://coveralls.io/github/flowhub/bigiot-js) [![Greenkeeper badge](https://badges.greenkeeper.io/flowhub/bigiot-js.svg)](https://greenkeeper.io/)
 ==========================
 
-This module aims to provide a JavaScript library for interacting with the [BIG IoT marketplace](https://market.big-iot.org/).
+This module provides a JavaScript library for interacting with the [BIG IoT marketplace](https://market.big-iot.org/).
 
 ## Features
 
-* Registering an offering in the marketplace
-* Validating the JWT token presented by an offering subscriber
 * Discovering offerings from the marketplace
 * Subscribing to an offering and receiving data from the provider
+* Registering an offering in the marketplace
+* Validating the JWT token presented by an offering subscriber
 
 ## Planned features
 
@@ -20,6 +20,74 @@ Simply install this module with NPM:
 
 ```shell
 $ npm install bigiot-js --save
+```
+
+## Usage for consumers
+
+Prerequisites:
+
+* Log into the [BIG IoT Marketplace](https://market.big-iot.org) (or another compatible marketplace instance)
+* Register your company and a new consumer
+* Copy the consumer ID and secret from the marketplace UI
+
+See [a simple consumer example](https://github.com/flowhub/bigiot-js/blob/master/example/consumer.js) or [a dynamic offering discovery example](https://github.com/flowhub/bigiot-js/blob/master/example/consumer_discover.js).
+
+### Authenticating with the marketplace
+
+Once you've completed the above steps, you can use this library. Instantiate a consumer with:
+
+```javascript
+const bigiot = require('bigiot-js');
+const consumer = new bigiot.consumer(consumerId, consumerSecret);
+```
+
+Then you need to authenticate your consumer with the marketplace:
+
+```javascript
+consumer.authenticate()
+  .then(() => {
+    // Code to run after successful authentication
+  });
+```
+
+### Discovering available offerings
+
+You can look up offerings in the marketplace. But for more dynamic applications, it is also possible to discover them based on various criteria.
+
+For example, to discover all parking site offerings, you can do the following:
+
+```javascript
+const query = new bigiot.offering('Parking sites', 'urn:big-iot:ParkingSiteCategory');
+// If you don't care about specifics on price and location, you can remove those
+delete query.license;
+delete query.price;
+delete query.extent;
+
+// Then get list of matching offerings
+consumer.discover(query)
+  .then((matchingOfferings) => {
+    // Loop through the offerings can subscribe
+  });
+```
+
+### Subscribing to a known offering
+
+When you've found a data offering [from the marketplace](https://market.big-iot.org/allOfferings?onlyActive), you need to make a subscription in order to access it.
+
+```javascript
+consumer.subscribe('Offering ID here')
+  .then((subscription) => {
+    // Now you're subscribed. You can use the subscription details to make calls to the offering
+    consumer.access(subscription, inputData);
+  });
+```
+
+The input data above is a JSON structure fulfilling whatever input parameters the offering requires.
+
+**Note:** many Java BIG IoT providers utilize a self-signed invalid SSL certificate. This will be rejected by default. To allow requests to these providers, set:
+
+```javascript
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 ```
 
 ## Usage for providers
@@ -110,72 +178,4 @@ provider.validateToken(token)
   .then(() => {
     // Token is valid
   });
-```
-
-## Usage for consumers
-
-Prerequisites:
-
-* Log into the [BIG IoT Marketplace](https://market.big-iot.org) (or another compatible marketplace instance)
-* Register your company and a new consumer
-* Copy the consumer ID and secret from the marketplace UI
-
-See [a simple consumer example](https://github.com/flowhub/bigiot-js/blob/master/example/consumer.js) or [a dynamic offering discovery example](https://github.com/flowhub/bigiot-js/blob/master/example/consumer_discover.js).
-
-### Authenticating with the marketplace
-
-Once you've completed the above steps, you can use this library. Instantiate a consumer with:
-
-```javascript
-const bigiot = require('bigiot-js');
-const consumer = new bigiot.consumer(consumerId, consumerSecret);
-```
-
-Then you need to authenticate your consumer with the marketplace:
-
-```javascript
-consumer.authenticate()
-  .then(() => {
-    // Code to run after successful authentication
-  });
-```
-
-### Discovering available offerings
-
-You can look up offerings in the marketplace. But for more dynamic applications, it is also possible to discover them based on various criteria.
-
-For example, to discover all parking site offerings, you can do the following:
-
-```javascript
-const query = new bigiot.offering('Parking sites', 'urn:big-iot:ParkingSiteCategory');
-// If you don't care about specifics on price and location, you can remove those
-delete query.license;
-delete query.price;
-delete query.extent;
-
-// Then get list of matching offerings
-consumer.discover(query)
-  .then((matchingOfferings) => {
-    // Loop through the offerings can subscribe
-  });
-```
-
-### Subscribing to a known offering
-
-When you've found a data offering [from the marketplace](https://market.big-iot.org/allOfferings?onlyActive), you need to make a subscription in order to access it.
-
-```javascript
-consumer.subscribe('Offering ID here')
-  .then((subscription) => {
-    // Now you're subscribed. You can use the subscription details to make calls to the offering
-    consumer.access(subscription, inputData);
-  });
-```
-
-The input data above is a JSON structure fulfilling whatever input parameters the offering requires.
-
-**Note:** many Java BIG IoT providers utilize a self-signed invalid SSL certificate. This will be rejected by default. To allow requests to these providers, set:
-
-```javascript
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 ```
