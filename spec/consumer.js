@@ -25,6 +25,7 @@ describe('BIG IoT Consumer', () => {
         });
     });
     it('should be able to access the subscribed offering', () => {
+      this.timeout(4000);
       return consumer.access(subscription, {
         latitude: 50.9375,
         longitude: 6.9603,
