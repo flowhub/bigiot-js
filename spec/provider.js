@@ -111,7 +111,7 @@ describe('BIG IoT Provider', () => {
       expect(off.id).to.be.a('string', 'Offering ID needs to be available');
       return prov.delete(off)
         .then((result) => {
-          expect(result).to.equal(off.id);
+          expect(result.id).to.equal(off.id);
         });
     });
     it('should no longer be able to find offering on the marketplace', () => {
