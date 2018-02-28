@@ -56,7 +56,7 @@ describe('BIG IoT Provider', () => {
       return;
     });
   });
-  describe('registering an offering with a secret', () => {
+  describe('registering and deleting an offering with a secret', () => {
     let prov = null;
     let off = null;
     before(() => {
@@ -106,6 +106,30 @@ describe('BIG IoT Provider', () => {
         expect(foundOffering.rdfAnnotation.uri).to.equal(off.rdfUri);
         expect(foundOffering.spatialExtent.city).to.equal(off.extent.city);
       });
+    });
+    it('should be able to delete an offering', () => {
+        expect(off.id).to.be.a('string', 'Offering ID needs to be available');
+      const query = gql`
+        query offering($offeringId:String!) {
+          offering(id:$offeringId) {
+            id name
+            rdfAnnotation { uri label }
+            spatialExtent { city }
+          }
+        }
+      `;
+      prov.delete(off)
+        .then((result) => {
+            return prov.client.query({
+            query: query,
+            variables: {
+              offeringId: result,
+            },
+              })
+              .then((result) => {
+                expect(result.data.offering).to.be.null;
+              });
+        });
     });
   });
   describe('validating consumer tokens', () => {
