@@ -106,6 +106,22 @@ describe('BIG IoT Provider', () => {
         expect(foundOffering.rdfAnnotation.uri).to.equal(off.rdfUri);
         expect(foundOffering.spatialExtent.city).to.equal(off.extent.city);
       });
+    it('should be able to deactivate offering', () => {
+      expect(off.id).to.be.a('string', 'Offering ID needs to be available');
+      prov.deactivate(off)
+        .then((result) => {
+          expect(result.activation.status).to.be.false;
+        });
+    });
+    it('should be able to activate offering and set new expiration time', () => {
+      expect(off.id).to.be.a('string', 'Offering ID needs to be available');
+      const expirationDate = new Date();
+      expirationDate.setMinutes(expirationDate.getMinutes() + 2);
+      prov.activate(off, expirationDate)
+        .then((result) => {
+          expect(result.activation.status).to.be.true;
+          expect(result.activation.expirationTime).to.equal(expirationDate.valueOf());
+        });
     });
     // Skipped until https://gitlab.com/BIG-IoT/exchange/issues/201 is resolved
     it.skip('should be able to delete an offering', () => {
