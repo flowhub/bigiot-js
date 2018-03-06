@@ -164,7 +164,7 @@ provider.register(offering)
   });
 ```
 
-The offering registration is timeboxed and will expire by default in ten minutes, so for persistent offerings you should keep re-registering the offering in a timer loop.
+The offering registration is timeboxed and will expire by default in ten minutes, so for persistent offerings you should call the activate method in a timer loop and update the expiration time regularly.
 
 ### Validating subscriber JSON Web Tokens
 
