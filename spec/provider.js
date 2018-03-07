@@ -107,23 +107,6 @@ describe('BIG IoT Provider', () => {
         expect(foundOffering.spatialExtent.city).to.equal(off.extent.city);
       });
     });
-    it('should be able to deactivate offering', () => {
-      expect(off.id).to.be.a('string', 'Offering ID needs to be available');
-      return prov.deactivate(off)
-        .then((result) => {
-          expect(result.activation.status).to.be.false;
-        });
-    });
-    it('should be able to activate offering and set new expiration time', () => {
-      expect(off.id).to.be.a('string', 'Offering ID needs to be available');
-      const expirationDate = new Date();
-      expirationDate.setMinutes(expirationDate.getMinutes() + 2);
-      return prov.activate(off, expirationDate)
-        .then((result) => {
-          expect(result.activation.status).to.be.true;
-          expect(result.activation.expirationTime).to.equal(expirationDate.valueOf());
-        });
-    });
     // Skipped until https://gitlab.com/BIG-IoT/exchange/issues/201 is resolved
     it.skip('should be able to delete an offering', () => {
       expect(off.id).to.be.a('string', 'Offering ID needs to be available');
@@ -151,7 +134,121 @@ describe('BIG IoT Provider', () => {
       })
         .then((result) => {
           expect(result.data.offering).to.be.null;
+        });
+    });
+  });
+  describe('activating and deactivation offerings', () => {
+    let prov = null;
+    let off = null;
+    before(() => {
+      prov = new BigIotProvider(providerId, providerSecret);
+      off = new BigIotOffering('test offering', 'urn:big-iot:EnvironmentalIndicatorCategory');
+      off.endpoints = {
+        uri: 'http://localhost/foo',
+      };
+      off.outputData = [
+        {
+          name: 'temperature',
+          rdfUri: 'http://schema.org/airTemperatureValue',
+        },
+      ];
+      off.extent = {
+        city: 'Berlin',
+      };
+    });
+    it('should fail if activate is called before authentication', () => {
+      prov.activate(off)
+        .then((result) => {
+          done(new Error('Unauthorized register passed'));
         })
+        .catch((e) => {
+          expect(e).to.be.an('error');
+          expect(e.message).to.include('must be authenticated');
+          done();
+        });
+    });
+    it('should fail if deactivate is called before authentication', () => {
+      prov.deactivate(off)
+        .then((result) => {
+          done(new Error('Unauthorized register passed'));
+        })
+        .catch((e) => {
+          expect(e).to.be.an('error');
+          expect(e.message).to.include('must be authenticated');
+          done();
+        });
+    });
+    it('should fail if activate is called before registering offer', async () => {
+      await prov.authenticate();
+      prov.activate(off)
+        .then((result) => {
+          done(new Error('Unauthorized register passed'));
+        })
+        .catch((e) => {
+          expect(e).to.be.an('error');
+          expect(e.message).to.include('must be registered');
+          done();
+        });
+    });
+    it('should fail if deactivate is called before registering offer', async () => {
+      await prov.authenticate();
+      prov.deactivate(off)
+        .then((result) => {
+          done(new Error('Unauthorized register passed'));
+        })
+        .catch((e) => {
+          expect(e).to.be.an('error');
+          expect(e.message).to.include('must be registered');
+          done();
+        });
+    });
+    describe('should be able to activate and deactivate offering', () => {
+      before(async () => {
+        await prov.authenticate();
+        await prov.register(off);
+      });
+      it('should be able to deactivate offering', async () => {
+        expect(off.id).to.be.a('string', 'Offering ID needs to be available');
+        const result = await prov.deactivate(off);
+        return expect(result.activation.status).to.be.false;
+      });
+      it('should be able to activate offering', async () => {
+        expect(off.id).to.be.a('string', 'Offering ID needs to be available');
+        const result = await prov.activate(off);
+        return expect(result.activation.status).to.be.true;
+      });
+    });
+    describe('should be able to activate offering and set new expiration time', () => {
+      let expirationDate = null;
+      before(async () => {
+        expirationDate = new Date();
+        expirationDate.setMinutes(expirationDate.getMinutes() + 2);
+        await prov.authenticate();
+        await prov.register(off);
+      });
+      it('offering should be active', async () => {
+        expect(off.id).to.be.a('string', 'Offering ID needs to be available');
+        const result = await prov.activate(off, expirationDate);
+        expect(result.activation.status).to.be.true;
+      });
+      it('activation time should match', async () => {
+        expect(off.id).to.be.a('string', 'Offering ID needs to be available');
+        const query = gql`
+        query offering($offeringId:String!) {
+          offering(id:$offeringId) {
+            id name
+            activation { expirationTime }
+          }
+        }
+      `;
+        const result = await prov.client.query({
+          query,
+          variables: {
+            offeringId: off.id,
+          },
+        });
+        expect(result.data.offering.activation.expirationTime).to.equal(expirationDate.valueOf());
+      });
     });
   });
   describe('validating consumer tokens', () => {
