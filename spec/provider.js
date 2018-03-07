@@ -106,6 +106,7 @@ describe('BIG IoT Provider', () => {
         expect(foundOffering.rdfAnnotation.uri).to.equal(off.rdfUri);
         expect(foundOffering.spatialExtent.city).to.equal(off.extent.city);
       });
+    });
     it('should be able to deactivate offering', () => {
       expect(off.id).to.be.a('string', 'Offering ID needs to be available');
       prov.deactivate(off)
