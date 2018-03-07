@@ -109,7 +109,7 @@ describe('BIG IoT Provider', () => {
     });
     it('should be able to deactivate offering', () => {
       expect(off.id).to.be.a('string', 'Offering ID needs to be available');
-      prov.deactivate(off)
+      return prov.deactivate(off)
         .then((result) => {
           expect(result.activation.status).to.be.false;
         });
@@ -118,7 +118,7 @@ describe('BIG IoT Provider', () => {
       expect(off.id).to.be.a('string', 'Offering ID needs to be available');
       const expirationDate = new Date();
       expirationDate.setMinutes(expirationDate.getMinutes() + 2);
-      prov.activate(off, expirationDate)
+      return prov.activate(off, expirationDate)
         .then((result) => {
           expect(result.activation.status).to.be.true;
           expect(result.activation.expirationTime).to.equal(expirationDate.valueOf());
