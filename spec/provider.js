@@ -156,7 +156,7 @@ describe('BIG IoT Provider', () => {
         city: 'Berlin',
       };
     });
-    it('should fail if activate is called before authentication', () => {
+    it('should fail if activate is called before authentication', (done) => {
       prov.activate(off)
         .then((result) => {
           done(new Error('Unauthorized register passed'));
@@ -167,7 +167,7 @@ describe('BIG IoT Provider', () => {
           done();
         });
     });
-    it('should fail if deactivate is called before authentication', () => {
+    it('should fail if deactivate is called before authentication', (done) => {
       prov.deactivate(off)
         .then((result) => {
           done(new Error('Unauthorized register passed'));
@@ -178,9 +178,9 @@ describe('BIG IoT Provider', () => {
           done();
         });
     });
-    it('should fail if activate is called before registering offer', async () => {
-      await prov.authenticate();
-      prov.activate(off)
+    it('should fail if activate is called before registering offer', (done) => {
+      prov.authenticate()
+        .then(() => prov.activate(off))
         .then((result) => {
           done(new Error('Unauthorized register passed'));
         })
@@ -190,9 +190,9 @@ describe('BIG IoT Provider', () => {
           done();
         });
     });
-    it('should fail if deactivate is called before registering offer', async () => {
-      await prov.authenticate();
-      prov.deactivate(off)
+    it('should fail if deactivate is called before registering offer', (done) => {
+      prov.authenticate()
+        .then(() => prov.deactivate(off))
         .then((result) => {
           done(new Error('Unauthorized register passed'));
         })
