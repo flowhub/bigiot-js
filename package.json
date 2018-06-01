@@ -20,7 +20,7 @@
   "homepage": "https://github.com/flowhub/bigiot-js#readme",
   "dependencies": {
     "apollo-cache-inmemory": "^1.1.4",
-    "apollo-client": "^2.2.5",
+    "apollo-client": "^2.3.2",
     "apollo-link": "^1.2.0",
     "apollo-link-http": "^1.4.0",
     "graphql": "^0.13.1",
