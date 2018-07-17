@@ -1,10 +1,13 @@
 const path = require('path');
 
 module.exports = {
-	entry: "./index.js",
+	entry: {
+        bigiot: "./index.js",
+        browsertests: './spec/browser/consumer.js',
+    },
 	output: {
         library: 'bigiot',
 		path: __dirname + "/dist",
-		filename: "bigiot.js",
+		filename: "[name].js",
 	},
 }

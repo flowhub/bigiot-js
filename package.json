@@ -4,9 +4,11 @@
   "description": "JavaScript library for interacting with the BIG IoT marketplace",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && npm run spec",
+    "test": "npm run lint && npm run spec && npm run browsertest",
     "lint": "eslint lib/*.js example/*.js index.js",
-    "spec": "nyc mocha --reporter spec spec/*.js"
+    "spec": "nyc mocha --reporter spec spec/*.js",
+    "build": "node tools/generateconfig.js && webpack",
+    "browsertest": "karma start --single-run"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,9 @@
     "eslint": "^4.18.0",
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
+    "karma": "^2.0.4",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-mocha": "^1.3.0",
     "mocha": "^5.0.0",
     "nyc": "^11.2.1",
     "webpack": "^4.16.1",
