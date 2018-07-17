@@ -5,15 +5,13 @@
 
 </head>
 <body>
-Loading BIG IoT...
+<p>Connecting to BIG IoT...</p>
 </body>
 
 <script type='text/javascript' src='../dist/bigiot.js'></script>
 
 <script type='text/javascript'>
-// Replace with require('bigiot-js')
 const { consumer: BigIotConsumer, offering: BigIotOffering } = bigiot;
-
 
 // Configure your consumer API keys
 const config = {
@@ -24,13 +22,35 @@ const config = {
   marketplace: undefined, // default
 };
 
+// Put the output on the page
+function log(status, data) {
+  try {
+    console.log(status, data);
+    const s = document.createElement('p');
+    s.innerHTML = status;
+    document.body.appendChild(s);
+
+    if (typeof data !== 'undefined') {
+      if (typeof data.message !== 'undefined') {
+        data = data.message;
+      } 
+      const d = document.createElement('p');
+      d.innerHTML = JSON.stringify(data, null, 2);
+      document.body.appendChild(d);
+    }
+
+  } catch (e) {
+    console.error('error logging', e);
+  }
+}
+
 // Create a new consumer instance with your credentials
 const consumer = new BigIotConsumer(config.id, config.secret, undefined, config.corsproxy);
 
 // Authenticate your consumer
 consumer.authenticate().then(() => {
   // authentication is done
-  console.log('Consumer authentication successful!');
+  log('Consumer authentication successful!');
 
   const query = new BigIotOffering('Parking spaces', 'urn:big-iot:ParkingSpaceCategory');
   // Remove requirements we don't care about
@@ -40,7 +60,7 @@ consumer.authenticate().then(() => {
 
   consumer.subscribe('Thingful-Thingful-barcelona_air_temperature')
     .then((offering) => {
-      console.log('Offering subscription successful!');
+      log('Offering subscription successful!');
 
       const accessParameters = {
         longitude: 9.2,
@@ -49,13 +69,13 @@ consumer.authenticate().then(() => {
       };
 
       return consumer.access(offering, accessParameters).then((response) => {
-        console.log('Response: ', response);
+        log('Response: ', response);
       });
     }, (err) => {
-        console.log('subscription error', err);
+        log('subscription error', err);
     });
 }).catch((err) => {
-  console.log('err', err);
+  log('auth err', err);
 });
 </script>
 </html>
