@@ -21,14 +21,14 @@ describe('BIG IoT Consumer', () => {
     });
     it('should succeed to authenticate', () => {
       return consumer.authenticate();
-    });
+    }).timeout(5*1000);
     it('should be able to subscribe to an offering', () => {
       return consumer.subscribe('Flowhub_UG-ParkingProductionNew-Cologne_Parking')
         .then((sub) => {
           subscription = sub;
           return sub;
         });
-    });
+    }).timeout(5*1000);
     it('should be able to access the subscribed offering', () => {
       expect(subscription).to.be.an('object', 'Should have subscribed before');
       return consumer.access(subscription, {
@@ -44,7 +44,7 @@ describe('BIG IoT Consumer', () => {
           expect(result[0].vacant).to.be.a('number');
           return true;
         });
-    });
+    }).timeout(5*1000);
   });
 
   describe('discovering offerings', () => {
