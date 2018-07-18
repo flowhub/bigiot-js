@@ -9,6 +9,7 @@ This module provides a JavaScript library for interacting with the [BIG IoT mark
 * Subscribing to an offering and receiving data from the provider
 * Registering an offering in the marketplace
 * Validating the JWT token presented by an offering subscriber
+* Supports Node.js (provider,consumer) and browser (consumer only)
 
 ## Planned features
 
@@ -30,7 +31,11 @@ Prerequisites:
 * Register your company and a new consumer
 * Copy the consumer ID and secret from the marketplace UI
 
-See [a simple consumer example](https://github.com/flowhub/bigiot-js/blob/master/example/consumer.js) or [a dynamic offering discovery example](https://github.com/flowhub/bigiot-js/blob/master/example/consumer_discover.js).
+A number of examples are available:
+
+* [Simple consumer](https://github.com/flowhub/bigiot-js/blob/master/example/consumer.js) (Node.js)
+* [Consumer with a dynamic offering discovery](https://github.com/flowhub/bigiot-js/blob/master/example/consumer_discover.js) (Node.js)
+* [Simple consumer for browser](./example/consumer.html)
 
 ### Authenticating with the marketplace
 
@@ -49,6 +54,19 @@ consumer.authenticate()
     // Code to run after successful authentication
   });
 ```
+
+### Specifying a CORS proxy (browser)
+
+As of July 2018, the Marketplace API does not allow Cross-Origin-Request-Sharing.
+To work around this, a CORS proxy like [cors-anywhere](https://github.com/Rob--W/cors-anywhere) must be used.
+
+```javascript
+const bigiot = require('bigiot-js');
+const marketplace = undefined;
+const corsproxy = 'https://mycors.example.org';
+const consumer = new bigiot.consumer(consumerId, consumerSecret, marketplace, corsproxy);
+```
+
 
 ### Discovering available offerings
 
