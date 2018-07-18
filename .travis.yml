@@ -6,7 +6,12 @@ before_script:
 - npm run build
 after_success:
 - "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
+before_deploy:
+- rm dist/browsertests.js # has test credentials
+- mkdir dist/${TRAVIS_TAG}
+- cp dist/bigiot.js dist/${TRAVIS_TAG}/bigiot.js
 deploy:
+-
   provider: npm
   email: henri.bergius@iki.fi
   api_key:
@@ -14,6 +19,17 @@ deploy:
   on:
     tags: true
     repo: flowhub/bigiot-js
+-
+  provider: pages
+  skip-cleanup: true
+  keep-history: true
+  local-dir: dist/
+  github-token:
+    secure: "NIwBmKs539m576z5AyOIYpMejHvctjC8Hsjo5QVSxuOfM49Zcy3xs9+UqODZdcGg3FhcYHxDV/U1oph0iC7vHEq2RZ4v6jx7Br4/JW0mSZoQRHI0AzrDvIPkNlfv+ZytfKGIvBLoz+quRsoNcPbFcFM/KUmwVCFQiyMKGEu2yxu+gFSZKRFTN7xTTkivn2MDLmerjQJzqlr6tnTPu2B7rab4Ewdc0e4If2W/pLTcMNmY1B0G9EjXwpsOcYQZTNmTBmiZFkL7cHm1WMEEDTmiumNzaHPNeeOcTsnVrR5mkY2wt1boDdCnkbuPbmwyHATUZGxsJKMitonVTUkSH5KU4MTmwRBIZP4YGDeVR6cvENhabg++PO9QfJEKGMlmoF5wjMoWitoNlhlA4ryQDjgKdZpSU3IaYF24Zshe2dwVsAFtrGPicCO5/w4nfFUi0SAUKWQK+GBGhizrJhAR+ut2kNxDVewq12DJD/eiNFM9qrNOJcuLvhXKhY3qboOvD6Hmschcq8Nh27PvpGclGjjBfl8txMnUfysWftB8MlyziMdnpD5xpWYxBqa9EVRnZj0kyB7KUSysPeTWl7QQH5SKrnidGuX/vw8AHPlg0aOZE0YVwb1d656FlcKrB0bH42oQYPwrnCa5Q2KXw6Yyjn6GkkvjAVJBZnIa2994SqazWxo="
+
+  on:
+    branch: master 
+    tags: true
 env:
   global:
   - MOZ_HEADLESS=1
