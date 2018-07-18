@@ -37,6 +37,12 @@ A number of examples are available:
 * [Consumer with a dynamic offering discovery](https://github.com/flowhub/bigiot-js/blob/master/example/consumer_discover.js) (Node.js)
 * [Simple consumer for browser](./example/consumer.html)
 
+We recomment using Webpack to include bigiot also in browser applications.
+But you may also use the prebuilt .js file, either:
+
+* Latest: `https://flowhub.github.io/bigiot-js/bigiot.js`
+* Versioned: `https://flowhub.github.io/bigiot-js/$VERSION/bigiot.js`
+
 ### Authenticating with the marketplace
 
 Once you've completed the above steps, you can use this library. Instantiate a consumer with:
