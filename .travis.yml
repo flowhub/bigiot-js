@@ -6,7 +6,6 @@ before_script:
 - npm run build
 after_success:
 - "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
-before_deploy:
 - rm dist/browsertests.js # has test credentials
 - mkdir dist/${TRAVIS_TAG}
 - cp dist/bigiot.js dist/${TRAVIS_TAG}/bigiot.js
