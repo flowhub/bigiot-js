@@ -45,39 +45,21 @@ function log(status, data) {
   }
 }
 
-// Create a new consumer instance with your credentials
-const consumer = new BigIotConsumer(config.id, config.secret, undefined, config.corsproxy);
+const secret = 'wC0ZlPkqSN-VqxX2DCGKIQ==';
 
-// Authenticate your consumer
-consumer.authenticate().then(() => {
-  // authentication is done
-  log('Consumer authentication successful!');
+//const token = bigiot.jwt.sign(secret, 'base64', { expiresIn: '1h', });
+const url = 'http://localhost:8000/bigiot/access/RandomNumberOffering';
 
-  const query = new BigIotOffering('Parking spaces', 'urn:big-iot:ParkingSpaceCategory');
-  // Remove requirements we don't care about
-  delete query.license;
-  delete query.extent;
-  delete query.price;
-
-  consumer.subscribe('Thingful-Thingful-barcelona_air_temperature')
-    .then((offering) => {
-      log('Offering subscription successful!');
-
-      const accessParameters = {
-        longitude: 9.2,
-        latitude: 42.0,
-        radius: 10000000,
-      };
-
-      return consumer.access(offering, accessParameters).then((response) => {
-        log('Response: ', response);
-      });
-    }, (err) => {
-        log('subscription error', err);
-    });
+fetch(url, {
+  headers: {
+    //Authorization: `Bearer ${token}`,
+  },
+}).then((response) => {
+  console.error('offer respo', response);
 }).catch((err) => {
-  log('auth err', err);
+  console.error('err', err);
 });
+
 </script>
 </html>
 
