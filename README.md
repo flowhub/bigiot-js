@@ -203,3 +203,10 @@ provider.validateToken(token)
     // Token is valid
   });
 ```
+
+## Enabling browser support in Java Provider 
+These steps are needed to support direct access from web browsers when using the BIG IoT Java lib in your Provider (not `bigiot-js`).
+
+1. Use a well known, trusted SSL certificate. The default in Java Provider is self-signed and cannot be used.
+2. Enable CORS support. `((EmbeddedSpark)provider.getEmbeddedServer()).enableCorsAll();`
+
