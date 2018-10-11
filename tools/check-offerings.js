@@ -38,7 +38,25 @@ function htmlElement(type, attributes={}, children=[]) {
     return `<${type} ${attrs}>${childs}</${type}>`
 }
 
-function renderHtml(results) {
+const reportStyle = `
+tr {
+  padding: 10px;  
+}
+
+thead td {
+  padding-bottom: 5px;
+  padding-left: 2px;
+  padding-right: 10px;
+  font-size: 18px;
+}
+
+tbody td {
+  padding: 3px;
+  font-size: 14px;
+}
+`
+
+function renderHtml(results, style) {
   
   var rows = []; 
 
@@ -53,17 +71,14 @@ function renderHtml(results) {
                   tr({}, tds({}, ['Provider', 'Offering', 'Data', 'SSL', 'CORS']))
   );
 
+  // Puts error message in tooltip
   const errorElement = (errStr) => {
-    return (errStr) ? `<span title=${errStr}>❌</span>` : `<span>✓</span>` 
+    return (errStr) ? `<span title="${errStr}">❌</span>` : `<span>✓</span>` 
   };
 
-  // TODO: show organization, offering name in separate rows
-  // TODO: show SSL, CORS, error, fields separately
   for (var offering of results) {
     const offeringPieces = offering.offeringId.split('-');
     const offeringName = offeringPieces[offeringPieces.length-1];
-
-    //console.log('fo', offering);
 
     const items = [
       offering.providerId,
@@ -74,13 +89,14 @@ function renderHtml(results) {
     ];
     const row = tr({}, tds({}, items));
     rows.push(row);
-
-    //console.log(offering.offeringId, '\t\t\t', offering.errorMessage);
   }
 
   const contents = table({}, [ header, e('tbody', {}, rows) ]);
 
-  const head = e('head', {}, [ '<meta content="text/html;charset=utf-8" http-equiv="Content-Type">' ]);
+  const head = e('head', {}, [
+    '<meta content="text/html;charset=utf-8" http-equiv="Content-Type">',
+    htmlElement('style', {}, style),
+  ]);
   return e('html', {}, [ head , e('body', {}, contents) ]); 
 }
 
@@ -107,6 +123,8 @@ function processResults(fetchResults, category) {
     return d;
   });
 }
+
+
 
 // TODO: track access time
 // TODO: support inputs
@@ -212,6 +230,32 @@ const knownCategories = [
   'urn:big-iot:PeopleDensityInAreaCategory',
 ]
 
+function parseArgs(args, usage) {
+ 
+  var options = {};
+  var positional = [];
+  var haveOption = null;
+  for (var arg of args) {
+    if (arg.indexOf('=') != -1) {
+      throw new Error(`--option=ARG not supported. Usage: ${usage}`);
+    }
+
+    if (haveOption) {
+      options[haveOption] = arg;
+      haveOption = null;
+    } else {
+      if (arg.indexOf('--') == 0) {
+        haveOption = arg.slice(2);
+      } else if (arg.indexOf('-') != -1) {
+        throw new Error(`Short style -option not supported. Usage: ${usage}`);
+      } else {
+        positional.push(arg);
+      }
+    }
+  }
+  return [positional, options];
+}
+
 function main() {
 
   const config = {
@@ -225,8 +269,14 @@ function main() {
     throw new Error("Missing BIGIOT_CONSUMER_SECRET");
   }
 
-  // TODO: allow to specify --category
-  // TOOD: allow to specify --offering
+  var [args, options] = parseArgs(process.argv.slice(2), "Usage: bigiotjs-check-offerings [--category URI] [--offering OFFERING]");
+
+  var categories = knownCategories;
+  if (options.category) {
+    categories = [ options.category ]; 
+  }
+
+  // TODO: allow to specify --offering
 
   const consumer = new bigiot.consumer(config.id, config.secret);
 
@@ -236,16 +286,16 @@ function main() {
     });
   };
 
-  var categories = knownCategories.slice(0,2);
-
   consumer.authenticate().then(() => {
     return Promise.all(categories.map((c) => checkCategory(c)));
   }).then((cc) => {
     const flat = flatten(cc);
     console.log(JSON.stringify(flat, null, 2));
 
-    const report = renderHtml(flat);
-    fs.writeFileSync('report.html', report);
+    if (options.html) {
+      const report = renderHtml(flat, reportStyle);
+      fs.writeFileSync(options.html, report);
+    }
   }).catch((err) => {
     console.error('error', err);
     process.exit(1);
