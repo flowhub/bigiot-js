@@ -1,5 +1,7 @@
 
 const https = require('https');
+const fs = require('fs');
+
 const bigiot = require('../');
 
 function onlyUnique(value, index, self) { 
@@ -36,7 +38,7 @@ function htmlElement(type, attributes={}, children=[]) {
     return `<${type} ${attrs}>${childs}</${type}>`
 }
 
-function check(results) {
+function renderHtml(results) {
   
   var rows = []; 
 
@@ -48,29 +50,38 @@ function check(results) {
   const e = htmlElement;
 
   const header = thead({},
-                  tr({}, tds({}, ['Offering', 'Error']))
+                  tr({}, tds({}, ['Provider', 'Offering', 'Data', 'SSL', 'CORS']))
   );
 
-  console.log('h', header)
+  const errorElement = (errStr) => {
+    return (errStr) ? `<span title=${errStr}>❌</span>` : `<span>✓</span>` 
+  };
 
   // TODO: show organization, offering name in separate rows
   // TODO: show SSL, CORS, error, fields separately
   for (var offering of results) {
-    const fetchError = offering.errorMessage || '';
-    const name = offering.offeringId;
+    const offeringPieces = offering.offeringId.split('-');
+    const offeringName = offeringPieces[offeringPieces.length-1];
 
-    console.log('fo', offering);
+    //console.log('fo', offering);
 
-    const row = tr({}, tds({}, [name, fetchError]));
+    const items = [
+      offering.providerId,
+      offeringName,
+      errorElement(offering.fetchError),
+      errorElement(offering.sslError),
+      errorElement(offering.corsError)
+    ];
+    const row = tr({}, tds({}, items));
     rows.push(row);
-
 
     //console.log(offering.offeringId, '\t\t\t', offering.errorMessage);
   }
 
   const contents = table({}, [ header, e('tbody', {}, rows) ]);
 
-  return e('html', {}, [e('head', {}, []), e('body', {}, contents) ]); 
+  const head = e('head', {}, [ '<meta content="text/html;charset=utf-8" http-equiv="Content-Type">' ]);
+  return e('html', {}, [ head , e('body', {}, contents) ]); 
 }
 
 // Return relevant data about the offering
@@ -232,6 +243,9 @@ function main() {
   }).then((cc) => {
     const flat = flatten(cc);
     console.log(JSON.stringify(flat, null, 2));
+
+    const report = renderHtml(flat);
+    fs.writeFileSync('report.html', report);
   }).catch((err) => {
     console.error('error', err);
     process.exit(1);
@@ -239,7 +253,6 @@ function main() {
 }
 
 module.exports = {
-  check: check,
 }
 
 if (!module.parent) { main() }
