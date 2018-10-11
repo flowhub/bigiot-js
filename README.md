@@ -108,11 +108,16 @@ consumer.subscribe('Offering ID here')
 
 The input data above is a JSON structure fulfilling whatever input parameters the offering requires.
 
-**Note:** many Java BIG IoT providers utilize a self-signed invalid SSL certificate. This will be rejected by default. To allow requests to these providers, set:
+**Note:** many Java BIG IoT providers utilize a self-signed invalid SSL certificate.
+These will be rejected by default. To allow requests to these providers from Node.js, pass a custom [https.Agent](https://nodejs.org/api/https.html#https_class_https_agent) to `Consumer`:
 
 ```javascript
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+const https = require('https');
+const options = { httpAgent: new https.Agent({rejectUnauthorized: false}) };
+const consumer = bigiot.consumer(consumerId, consumerSecret, null, options); 
 ```
+
+This is not possible in web browsers. To workaround, use a CORS proxy.
 
 ## Usage for providers
 

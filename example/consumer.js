@@ -1,8 +1,9 @@
 // Replace with require('bigiot-js')
 const { consumer: BigIotConsumer } = require('../index');
+const https = require('https');
 
 // Java providers use self-signed SSL certificates
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+const ignoreSSLAgent = https.Agent({ rejectUnauthorized: false });
 
 // Configure your consumer by setting the BIGIOT_CONSUMER_ID and BIGIOT_CONSUMER_SECRET environment
 // variables
@@ -12,7 +13,7 @@ const config = {
 };
 
 // Create a new consumer instance with your credentials
-const consumer = new BigIotConsumer(config.id, config.secret);
+const consumer = new BigIotConsumer(config.id, config.secret, null, { httpAgent: ignoreSSLAgent });
 
 // Authenticate your consumer
 consumer.authenticate().then(() => {
