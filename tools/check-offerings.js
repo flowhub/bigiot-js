@@ -120,6 +120,31 @@ function renderHtml(results, style) {
   return e('html', {}, [ head , body ]);
 }
 
+function renderCSV(results) {
+
+  const quote = (s) => `"${s}"`
+  const fields = [
+    'offering', 'category', 'fetchError', 'sslError', 'corsError'
+  ]
+  const header = fields.map(quote).join(',');
+
+  let rows = []
+  for (var o of results) {
+
+    const items = [
+      o.offeringId,
+      o.category,
+      o.fetchError||'',
+      o.sslError||'',
+      o.corsError||'',
+    ];
+    const row = items.map(quote).join(',');
+    rows.push(row);
+  }
+
+  return [].concat(header, rows).join("\n")
+}
+
 // Return relevant data about the offering
 function processResults(fetchResults, category) {
 
@@ -310,7 +335,7 @@ function main() {
     return Promise.all(categories.map((c) => checkCategory(c)));
   }).then((cc) => {
     const flat = flatten(cc);
-    console.log(JSON.stringify(flat, null, 2));
+    console.log(renderCSV(flat));
 
     if (options.html) {
       const report = renderHtml(flat, reportStyle);
