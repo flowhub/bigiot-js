@@ -215,3 +215,14 @@ These steps are needed to support direct access from web browsers when using the
 1. Use a well known, trusted SSL certificate. The default in Java Provider is self-signed and cannot be used.
 2. Enable CORS support. `((EmbeddedSpark)provider.getEmbeddedServer()).enableCorsAll();`
 
+## Verify browser-compatability of offerings
+Browsers must have valid SSL and support CORS to be used in browser.
+The `bigiotjs-check-offerings` tool can test offerings to verify this.
+
+To check offerings of a specific category
+
+    bigiotjs-check-offerings --category urn:big-iot:ParkingSiteCategory
+
+To run for all known categories and output an HTML report
+
+    bigiotjs-check-offerings --html report.html
