@@ -68,7 +68,7 @@ function renderHtml(results, style) {
   const e = htmlElement;
 
   const header = thead({},
-                  tr({}, tds({}, ['Provider', 'Offering', 'Data', 'SSL', 'CORS']))
+                  tr({}, tds({}, ['Category',  'Provider', 'Offering', 'Data', 'SSL', 'CORS']))
   );
 
   // Puts error message in tooltip
@@ -81,6 +81,7 @@ function renderHtml(results, style) {
     const offeringName = offeringPieces[offeringPieces.length-1];
 
     const items = [
+      offering.category,
       offering.providerId,
       offeringName,
       errorElement(offering.fetchError),
@@ -190,7 +191,7 @@ function checkOfferingAccess(consumer, offering) {
 
 function subscribeAndFetch(consumer, category) {
 
-  const name = category;
+  const name = category+'1';
   const query = new bigiot.offering(name, category);
   // No requirements
   delete query.license;
@@ -202,7 +203,7 @@ function subscribeAndFetch(consumer, category) {
     return Promise.all(allOfferings.map((o) => checkOfferingAccess(consumer, o)))
   })
   .then((results) => {
-    return processResults(results);
+    return processResults(results, category);
   })
 
 }
