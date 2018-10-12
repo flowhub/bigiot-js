@@ -33,12 +33,21 @@ function htmlElement(type, attributes={}, children=[]) {
     }
 
     const attrValues = Object.keys(attributes).map((a) => `${a}=${attributes[a].toString()}`);
-    const attrs = attrValues.length ? ' ' + attrs.join(' ') : '';
+    const attrs = attrValues.length ? ' ' + attrValues.join(' ') : '';
     const childs = children.map((c) => c.toString()).join('\n');
     return `<${type} ${attrs}>${childs}</${type}>`
 }
 
 const reportStyle = `
+h2 {
+  font-size: 18px;
+}
+
+.intro {
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+
 tr {
   padding: 10px;  
 }
@@ -54,6 +63,7 @@ tbody td {
   padding: 3px;
   font-size: 14px;
 }
+
 `
 
 function renderHtml(results, style) {
@@ -92,13 +102,22 @@ function renderHtml(results, style) {
     rows.push(row);
   }
 
-  const contents = table({}, [ header, e('tbody', {}, rows) ]);
+  const intro = e('section', { className: 'intro' }, [
+    e('h2', {}, "BIG IoT offerings support for SSL and CORS"),
+    e('p', {}, "For details of errors, hover over the X."),
+    e('p', {}, "Notes: 1) Offerings may appear multiple times, if they are in multiple categories. 2) Some offerings require input parameters and fails when accessed by this tool."),
+    e('p', {}, `Report generated using bigiotjs-check-offerings from <a href="https://github.com/flowhub/bigiot-js">bigiot-js</a>. Last updated: ${(new Date).toString()}.`),
+  ])
+  const body = e('body', {}, [
+    intro,
+    table({}, [ header, e('tbody', {}, rows) ]),
+  ])
 
   const head = e('head', {}, [
     '<meta content="text/html;charset=utf-8" http-equiv="Content-Type">',
     htmlElement('style', {}, style),
   ]);
-  return e('html', {}, [ head , e('body', {}, contents) ]); 
+  return e('html', {}, [ head , body ]);
 }
 
 // Return relevant data about the offering
@@ -158,8 +177,8 @@ function checkOfferingAccess(consumer, offering) {
       // Check CORS
       const url = subscription.offering.endpoints[0].uri;
       return fetch(url, { agent: ignoreSSLAgent }).then((response) => {
-          const allowOrigin = response.headers['Access-Control-Allow-Origin'];
-          const allowMethods = response.headers['Access-Control-Allow-Methods'];
+          const allowOrigin = response.headers._headers['access-control-allow-origin'];
+          const allowMethods = response.headers._headers['access-control-allow-methods'];
           if (!allowOrigin) {
             throw new Error("Missing Access-Control-Allow-Origin header");
           }
@@ -172,7 +191,7 @@ function checkOfferingAccess(consumer, offering) {
            }
           }
       }).then(() => {
-        accessResult.sslError = null;
+        accessResult.corsError = null;
       }).catch((err) => {
         accessResult.corsError = err;
       });
