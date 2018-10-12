@@ -1,6 +1,6 @@
 {
   "name": "bigiot-js",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "JavaScript library for interacting with the BIG IoT marketplace",
   "main": "index.js",
   "bin": {
