@@ -3,6 +3,9 @@
   "version": "0.6.3",
   "description": "JavaScript library for interacting with the BIG IoT marketplace",
   "main": "index.js",
+  "bin": {
+    "bigiot-js-check-offerings": "./tools/check-offerings.js"
+  },
   "scripts": {
     "test": "npm run lint && npm run spec && npm run browsertest",
     "lint": "eslint lib/*.js example/*.js index.js",
