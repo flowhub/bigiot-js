@@ -29,7 +29,7 @@ tbody td {
 <body ><section  class=intro><h2 >BIG IoT offerings support for SSL and CORS</h2>
 <p >For details of errors, hover over the X.</p>
 <p >Notes: 1) Offerings may appear multiple times, if they are in multiple categories. 2) Some offerings require input parameters and fails when accessed by this tool.</p>
-<p >Report generated using bigiotjs-check-offerings from <a href="https://github.com/flowhub/bigiot-js">bigiot-js</a>. Last updated: Fri Oct 12 2018 16:52:59 GMT+0000 (UTC).</p></section>
+<p >Report generated using bigiotjs-check-offerings from <a href="https://github.com/flowhub/bigiot-js">bigiot-js</a>. Last updated: Thu Nov 01 2018 13:36:04 GMT+0000 (Coordinated Universal Time).</p></section>
 <table ><thead ><tr ><td >Category</td>
 <td >Provider</td>
 <td >Offering</td>
@@ -37,6 +37,12 @@ tbody td {
 <td >SSL</td>
 <td >CORS</td></tr></thead>
 <tbody ><tr ><td >urn:big-iot:ChargingStationCategory</td>
+<td >BarcelonaPilot-BarcelonaProvider</td>
+<td >ChargingStationsOffering</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50009/bigiot/access/chargePoints failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ChargingStationCategory</td>
 <td >VMZBerlin-vmzProvider</td>
 <td >availableevchargingservice</td>
 <td ><span>✓</span></td>
@@ -63,17 +69,17 @@ tbody td {
 <tr ><td >urn:big-iot:BikeSharingStationCategory</td>
 <td >CSI-CsiProvider</td>
 <td >Vercelli_BikeStationAvailability_Latest</td>
-<td ><span title="Provider failed with 500: Server Error">❌</span></td>
-<td ><span title="not checked">❌</span></td>
-<td ><span title="not checked">❌</span></td></tr>
+<td ><span>✓</span></td>
+<td ><span title="request to https://84.240.187.13:4049/bigiot/access/vercellibikestationavailability_latest failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:BikeSharingStationCategory</td>
 <td >CSI-CsiProvider</td>
 <td >Biella_BikeStationAvailability_Latest</td>
-<td ><span title="Provider failed with 500: Server Error">❌</span></td>
-<td ><span title="not checked">❌</span></td>
-<td ><span title="not checked">❌</span></td></tr>
+<td ><span>✓</span></td>
+<td ><span title="request to https://84.240.187.13:4049/bigiot/access/biellabikestationavailability_latest failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:BikeSharingStationCategory</td>
-<td >test_tlmat_unican-provider1</td>
+<td >SmartSantander-BigSantander</td>
 <td >SantanderBikeSharingStationsOffering</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
@@ -85,10 +91,40 @@ tbody td {
 <td ><span title="request to https://gibo.fib.upc.edu:50008/bigiot/access/bikes failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingSpaceCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_ParkingAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-parking-all failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingSpaceCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_ParkingAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-parking-all failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingSpaceCategory</td>
 <td >VMZBerlin-vmzProvider</td>
 <td >availableparkingservice</td>
 <td ><span>✓</span></td>
 <td ><span title="request to https://bigiot.provider.vmz.services:9001/bigiot/access/availableparkingservice failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingSpaceCategory</td>
+<td >SmartSantander-BigSantander</td>
+<td >SantanderParkingSpaceAvailabilityOffering</td>
+<td ><span>✓</span></td>
+<td ><span>✓</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingSpaceCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_ParkingPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-parking-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingSpaceCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_ParkingPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-parking-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingSpaceCategory</td>
 <td >VMZBerlin-vmzProvider</td>
@@ -101,12 +137,6 @@ tbody td {
 <td >Vercelli_ParkingSpotAvailability_Latest_Integration</td>
 <td ><span>✓</span></td>
 <td ><span title="request to https://84.240.187.13:4049/bigiot/access/vercelliparkingspotavailability_latest_integration failed, reason: certificate has expired">❌</span></td>
-<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
-<tr ><td >urn:big-iot:ParkingSpaceCategory</td>
-<td >test_tlmat_unican-provider1</td>
-<td >SantanderParkingSpaceAvailabilityOffering</td>
-<td ><span>✓</span></td>
-<td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingSpaceCategory</td>
 <td >CSI-CsiProvider</td>
@@ -151,20 +181,14 @@ tbody td {
 <td ><span title="request to https://zastel.com:9123/bigiot/access/Terracom-SpotyPal-Turin_Traffic_Average_Speed failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:TrafficDataCategory</td>
-<td >test_tlmat_unican-provider1</td>
+<td >SmartSantander-BigSantander</td>
 <td >SantanderTrafficConditionsOffering</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:NoisePollutionIndicatorCategory</td>
-<td >test_tlmat_unican-provider1</td>
+<td >SmartSantander-BigSantander</td>
 <td >SantanderNoiseSensorOffering</td>
-<td ><span>✓</span></td>
-<td ><span>✓</span></td>
-<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
-<tr ><td >urn:big-iot:NoisePollutionIndicatorCategory</td>
-<td >Thingful-Thingful</td>
-<td >barcelona_noise_level</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
@@ -187,14 +211,20 @@ tbody td {
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:WeatherIndicatorCategory</td>
+<td >SmartSantander-BigSantander</td>
+<td >SantanderRelativeHumiditySensorsOffering</td>
+<td ><span>✓</span></td>
+<td ><span>✓</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:WeatherIndicatorCategory</td>
 <td >Thingful-Thingful</td>
 <td >barcelona_env_wind_direction</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:WeatherIndicatorCategory</td>
-<td >test_tlmat_unican-provider1</td>
-<td >SantanderAtmosphericPressureSensorsOffering</td>
+<td >SmartSantander-BigSantander</td>
+<td >SantanderAirTemperatureSensorsOffering</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
@@ -205,20 +235,14 @@ tbody td {
 <td ><span title="request to https://ec2-52-29-149-213.eu-central-1.compute.amazonaws.com:8888/bigiot/access/weatherdata failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:WeatherIndicatorCategory</td>
-<td >test_tlmat_unican-provider1</td>
+<td >SmartSantander-BigSantander</td>
 <td >SantanderWindSensorsOffering</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:WeatherIndicatorCategory</td>
-<td >test_tlmat_unican-provider1</td>
-<td >SantanderAirTemperatureSensorsOffering</td>
-<td ><span>✓</span></td>
-<td ><span>✓</span></td>
-<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
-<tr ><td >urn:big-iot:WeatherIndicatorCategory</td>
-<td >Thingful-Thingful</td>
-<td >barcelona_air_temperature</td>
+<td >SmartSantander-BigSantander</td>
+<td >SantanderAtmosphericPressureSensorsOffering</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
@@ -228,23 +252,17 @@ tbody td {
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
-<tr ><td >urn:big-iot:WeatherIndicatorCategory</td>
-<td >test_tlmat_unican-provider1</td>
-<td >SantanderRelativeHumiditySensorsOffering</td>
-<td ><span>✓</span></td>
-<td ><span>✓</span></td>
-<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
-<tr ><td >urn:big-iot:COCategory</td>
-<td >Thingful-Thingful</td>
-<td >barcelona_air_quality_co</td>
-<td ><span>✓</span></td>
-<td ><span>✓</span></td>
-<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingSiteCategory</td>
 <td >Thingful-Thingful</td>
 <td >torino_parking_total_capacity</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingSiteCategory</td>
+<td >BarcelonaPilot-BarcelonaProvider</td>
+<td >Parking_Cluster_Sector_Offering</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50020/bigiot/access/sectors failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingSiteCategory</td>
 <td >Flowhub_UG-ParkingProductionNew</td>
@@ -265,11 +283,35 @@ tbody td {
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingSiteCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_SectorAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-sector-all failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingSiteCategory</td>
 <td >Flowhub_UG-ParkingProductionNew</td>
 <td >Cologne_Parking</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td></tr>
+<tr ><td >urn:big-iot:ParkingSiteCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_SectorPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-sector-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingSiteCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_SectorAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-sector-all failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingSiteCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_SectorPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-sector-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingCategory</td>
 <td >Bosch_SI-ProbeProvider</td>
 <td >available_parking_info_offering</td>
@@ -283,11 +325,29 @@ tbody td {
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingCategory</td>
+<td >BarcelonaPilot-BarcelonaProvider</td>
+<td >Parking_Cluster_Sector_Offering</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50020/bigiot/access/sectors failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_ParkingAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-parking-all failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingCategory</td>
 <td >Flowhub_UG-ParkingProductionNew</td>
 <td >Bahn_Parking_Berlin</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td></tr>
+<tr ><td >urn:big-iot:ParkingCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_ParkingAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-parking-all failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingCategory</td>
 <td >VMZBerlin-vmzProvider</td>
 <td >availableparkingservice</td>
@@ -301,10 +361,34 @@ tbody td {
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingCategory</td>
+<td >SmartSantander-BigSantander</td>
+<td >SantanderParkingSpaceAvailabilityOffering</td>
+<td ><span>✓</span></td>
+<td ><span>✓</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_ParkingPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-parking-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingCategory</td>
 <td >Thingful-Thingful</td>
 <td >torino_parking_vacant_spaces</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_ParkingPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-parking-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_SectorAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-sector-all failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingCategory</td>
 <td >VMZBerlin-vmzProvider</td>
@@ -319,11 +403,17 @@ tbody td {
 <td ><span>✓</span></td>
 <td ><span>✓</span></td></tr>
 <tr ><td >urn:big-iot:ParkingCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_SectorPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-sector-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingCategory</td>
 <td >CSI-CsiProvider</td>
 <td >Vercelli_ParkingSpotAvailability_historical</td>
-<td ><span title="Provider failed with 500: Server Error">❌</span></td>
-<td ><span title="not checked">❌</span></td>
-<td ><span title="not checked">❌</span></td></tr>
+<td ><span>✓</span></td>
+<td ><span title="request to https://84.240.187.13:4049/bigiot/access/vercelliparkingspotavailability_historical failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingCategory</td>
 <td >CSI-CsiProvider</td>
 <td >Vercelli_ParkingSpotAvailability_Latest_Integration</td>
@@ -331,16 +421,22 @@ tbody td {
 <td ><span title="request to https://84.240.187.13:4049/bigiot/access/vercelliparkingspotavailability_latest_integration failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingCategory</td>
-<td >test_tlmat_unican-provider1</td>
-<td >SantanderParkingSpaceAvailabilityOffering</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_SectorAll</td>
 <td ><span>✓</span></td>
-<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-sector-all failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:ParkingCategory</td>
 <td >CSI-CsiProvider</td>
 <td >Vercelli_ParkingSpotAvailability_Latest</td>
 <td ><span>✓</span></td>
 <td ><span title="request to https://84.240.187.13:4049/bigiot/access/vercelliparkingspotavailability_latest failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:ParkingCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_SectorPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-sector-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >VMZBerlin-vmzProvider</td>
@@ -375,20 +471,26 @@ tbody td {
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >CSI-CsiProvider</td>
 <td >Vercelli_BikeStationAvailability_Latest</td>
-<td ><span title="Provider failed with 500: Server Error">❌</span></td>
-<td ><span title="not checked">❌</span></td>
-<td ><span title="not checked">❌</span></td></tr>
+<td ><span>✓</span></td>
+<td ><span title="request to https://84.240.187.13:4049/bigiot/access/vercellibikestationavailability_latest failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >CSI-CsiProvider</td>
 <td >Biella_BikeStationAvailability_Latest</td>
-<td ><span title="Provider failed with 500: Server Error">❌</span></td>
-<td ><span title="not checked">❌</span></td>
-<td ><span title="not checked">❌</span></td></tr>
+<td ><span>✓</span></td>
+<td ><span title="request to https://84.240.187.13:4049/bigiot/access/biellabikestationavailability_latest failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
-<td >test_tlmat_unican-provider1</td>
-<td >SantanderBikeSharingStationsOffering</td>
+<td >BarcelonaPilot-BarcelonaProvider</td>
+<td >Parking_Cluster_Sector_Offering</td>
 <td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50020/bigiot/access/sectors failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_ParkingAll</td>
 <td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-parking-all failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >Flowhub_UG-ParkingProductionNew</td>
@@ -396,6 +498,12 @@ tbody td {
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >BarcelonaPilot-BarcelonaProvider</td>
+<td >BCNOpenDataTrafficStatusWithSketch</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50006/bigiot/access/BCNOpenDataTrafficStatusWithSketch failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >CSI-CsiProvider</td>
 <td >Biella_TrafficAvailability_Latest</td>
@@ -409,6 +517,12 @@ tbody td {
 <td ><span title="request to https://zastel.com:9123/bigiot/access/Terracom-SpotyPal-Turin_Traffic_Low_Speed_Areas failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_ParkingAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-parking-all failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >VMZBerlin-vmzProvider</td>
 <td >availableparkingservice</td>
 <td ><span>✓</span></td>
@@ -418,6 +532,18 @@ tbody td {
 <td >CSI-CsiProvider</td>
 <td >Vercelli_TrafficAvailability_Latest</td>
 <td ><span title="Provider failed with 500: Server Error">❌</span></td>
+<td ><span title="not checked">❌</span></td>
+<td ><span title="not checked">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >VMZBerlin-vmzProvider</td>
+<td >chargingreservationoffering</td>
+<td ><span title="Provider failed with 400: Bad Request">❌</span></td>
+<td ><span title="not checked">❌</span></td>
+<td ><span title="not checked">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >VMZBerlin-vmzProvider</td>
+<td >parkingreservationoffering</td>
+<td ><span title="Provider failed with 400: Bad Request">❌</span></td>
 <td ><span title="not checked">❌</span></td>
 <td ><span title="not checked">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
@@ -439,10 +565,34 @@ tbody td {
 <td ><span title="request to https://zastel.com:9123/bigiot/access/Terracom-SpotyPal-Turin_Traffic_Historical_Data failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >SmartSantander-BigSantander</td>
+<td >SantanderBikeSharingStationsOffering</td>
+<td ><span>✓</span></td>
+<td ><span>✓</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >BarcelonaPilot-BarcelonaProvider</td>
 <td >BikesOffering</td>
 <td ><span>✓</span></td>
 <td ><span title="request to https://gibo.fib.upc.edu:50008/bigiot/access/bikes failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >RondesVectorSpeedTrafficStatusWithSketchAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50013/bigiot/access/rondes-vector-speed-trafficstatus-withsketch-all failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >SmartSantander-BigSantander</td>
+<td >SantanderParkingSpaceAvailabilityOffering</td>
+<td ><span>✓</span></td>
+<td ><span>✓</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >BarcelonaPilot-BarcelonaProvider</td>
+<td >ChargingStationsOffering</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50009/bigiot/access/chargePoints failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >VMZBerlin-vmzProvider</td>
@@ -451,14 +601,14 @@ tbody td {
 <td ><span title="not checked">❌</span></td>
 <td ><span title="not checked">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
-<td >Thingful-Thingful</td>
-<td >torino_parking_vacant_spaces</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_ParkingPriceTypeStreetNameDescriptionByPosition</td>
 <td ><span>✓</span></td>
-<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-parking-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
-<td >test_tlmat_unican-provider1</td>
-<td >SantanderBusArrivalEstimationOffering</td>
+<td >Thingful-Thingful</td>
+<td >torino_parking_vacant_spaces</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
@@ -469,16 +619,34 @@ tbody td {
 <td ><span title="request to https://zastel.com:9123/bigiot/access/Terracom-SpotyPal-Turin_Traffic_For_Specific_Hours failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_ParkingPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-parking-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >VMZBerlin-vmzProvider</td>
 <td >panelmessageinfo</td>
 <td ><span>✓</span></td>
 <td ><span title="request to https://bigiot.provider.vmz.services:9017/bigiot/access/panelmessageinfo failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >BarcelonaPilot-BarcelonaProvider</td>
+<td >TravelTimeOffering</td>
+<td ><span title="Provider failed with 500: Server Error">❌</span></td>
+<td ><span title="not checked">❌</span></td>
+<td ><span title="not checked">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >VMZBerlin-vmzProvider</td>
 <td >availableevchargingservice</td>
 <td ><span>✓</span></td>
 <td ><span title="request to https://bigiot.provider.vmz.services:9011/bigiot/access/availableevchargingservice failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_SectorAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-sector-all failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >VMZBerlin-vmzProvider</td>
@@ -493,11 +661,17 @@ tbody td {
 <td ><span>✓</span></td>
 <td ><span>✓</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_SectorPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-sector-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >CSI-CsiProvider</td>
 <td >Vercelli_ParkingSpotAvailability_historical</td>
-<td ><span title="Provider failed with 500: Server Error">❌</span></td>
-<td ><span title="not checked">❌</span></td>
-<td ><span title="not checked">❌</span></td></tr>
+<td ><span>✓</span></td>
+<td ><span title="request to https://84.240.187.13:4049/bigiot/access/vercelliparkingspotavailability_historical failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >Bosch_SI-ProbeProvider</td>
 <td >wifiprobes</td>
@@ -523,16 +697,16 @@ tbody td {
 <td ><span title="request to https://bigiot.lab.es.aau.dk:19063/bigiot/access/buslocation failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >LesCorts_SectorAll</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50014/bigiot/access/lescorts_-sector-all failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >VMZBerlin-vmzProvider</td>
 <td >streetincidentinfo</td>
 <td ><span>✓</span></td>
 <td ><span title="request to https://bigiot.provider.vmz.services:9014/bigiot/access/streetincidentinfo failed, reason: certificate has expired">❌</span></td>
-<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
-<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
-<td >test_tlmat_unican-provider1</td>
-<td >SantanderParkingSpaceAvailabilityOffering</td>
-<td ><span>✓</span></td>
-<td ><span>✓</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
 <td >Terracom-SpotyPal</td>
@@ -571,7 +745,19 @@ tbody td {
 <td ><span title="request to https://84.240.187.13:4049/bigiot/access/vercelliparkingspotavailability_latest failed, reason: certificate has expired">❌</span></td>
 <td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:MobilityFeatureCategory</td>
-<td >test_tlmat_unican-provider1</td>
+<td >BarcelonaPilot-WorldSensing</td>
+<td >UPC_Virtual_SectorPriceTypeStreetNameDescriptionByPosition</td>
+<td ><span>✓</span></td>
+<td ><span title="request to https://gibo.fib.upc.edu:50018/bigiot/access/upc_virtual_-sector-price-type-streetname-description-byposition failed, reason: certificate has expired">❌</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >SmartSantander-BigSantander</td>
+<td >SantanderBusArrivalEstimationOffering</td>
+<td ><span>✓</span></td>
+<td ><span>✓</span></td>
+<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
+<tr ><td >urn:big-iot:MobilityFeatureCategory</td>
+<td >SmartSantander-BigSantander</td>
 <td >SantanderTrafficConditionsOffering</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
@@ -606,18 +792,6 @@ tbody td {
 <td ><span title="Provider failed with 422: Unprocessable Entity">❌</span></td>
 <td ><span title="not checked">❌</span></td>
 <td ><span title="not checked">❌</span></td></tr>
-<tr ><td >urn:big-iot:NO2Category</td>
-<td >Thingful-Thingful</td>
-<td >barcelona_air_quality_no2</td>
-<td ><span>✓</span></td>
-<td ><span>✓</span></td>
-<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
-<tr ><td >urn:big-iot:AirPollutionIndicatorCategory</td>
-<td >Thingful-Thingful</td>
-<td >barcelona_air_quality_co</td>
-<td ><span>✓</span></td>
-<td ><span>✓</span></td>
-<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
 <tr ><td >urn:big-iot:AirPollutionIndicatorCategory</td>
 <td >Simularia-WANDA_provider</td>
 <td >TorinoAirQuality</td>
@@ -643,19 +817,13 @@ tbody td {
 <td ><span title="not checked">❌</span></td>
 <td ><span title="not checked">❌</span></td></tr>
 <tr ><td >urn:big-iot:AirPollutionIndicatorCategory</td>
-<td >Thingful-Thingful</td>
-<td >barcelona_air_quality_no2</td>
-<td ><span>✓</span></td>
-<td ><span>✓</span></td>
-<td ><span title="Missing Access-Control-Allow-Origin header">❌</span></td></tr>
-<tr ><td >urn:big-iot:AirPollutionIndicatorCategory</td>
 <td >Simularia-WANDA_provider</td>
 <td >AirQualityPM25GridTorino</td>
 <td ><span title="Provider failed with 422: Unprocessable Entity">❌</span></td>
 <td ><span title="not checked">❌</span></td>
 <td ><span title="not checked">❌</span></td></tr>
 <tr ><td >urn:big-iot:AirPollutionIndicatorCategory</td>
-<td >test_tlmat_unican-provider1</td>
+<td >SmartSantander-BigSantander</td>
 <td >SantanderAirPollutionSensorsOffering</td>
 <td ><span>✓</span></td>
 <td ><span>✓</span></td>
