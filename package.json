@@ -44,7 +44,7 @@
     "karma-mocha": "^1.3.0",
     "mocha": "^5.0.0",
     "nyc": "^11.2.1",
-    "webpack": "^4.16.1",
+    "webpack": "^4.28.1",
     "webpack-cli": "^3.0.8"
   },
   "nyc": {
